@@ -2,9 +2,9 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   output: "standalone",
-  experimental: {
-    viewTransition: true,
-  },
+  // experimental: {
+  //   viewTransition: true,
+  // },
 };
 
 export default nextConfig;

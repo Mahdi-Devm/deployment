@@ -1,21 +1,54 @@
-import Link from "next/link";
+"use client";
 
-function page() {
+import { useState } from "react";
+
+export default function Home() {
+  const [prompt, setPrompt] = useState("");
+  const [answer, setAnswer] = useState("");
+  const [loading, setLoading] = useState(false);
+
+  async function send() {
+    setLoading(true);
+
+    const res = await fetch("/api/chat", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        message: prompt,
+      }),
+    });
+
+    const data = await res.json();
+
+    setAnswer(data.message);
+    setLoading(false);
+  }
+
   return (
-    <section>
-      <div className="gap-5 space-x-5 bg-amber-200 rounded-2xl text-center flex items-center justify-center h-50">
-        <Link className="bg-amber-500 rounded-2xl p-2" href={"/"}>
-          2
-        </Link>
-        <Link className="bg-amber-500 rounded-2xl p-2" href={"/test"}>
-          1
-        </Link>
-        <Link className="bg-amber-500 rounded-2xl p-2" href={"/test2"}>
-          3
-        </Link>
-      </div>
-    </section>
+    <main
+      style={{
+        maxWidth: 900,
+        margin: "50px auto",
+        display: "flex",
+        flexDirection: "column",
+        gap: 20,
+      }}
+    >
+      <h1>DeepSeek V4 Pro</h1>
+
+      <textarea
+        rows={8}
+        value={prompt}
+        onChange={(e) => setPrompt(e.target.value)}
+      />
+
+      <button onClick={send} disabled={loading}>
+        {loading ? "Loading..." : "Send"}
+      </button>
+
+      <pre>{answer}</pre>
+    </main>
   );
 }
-
-export default page;
