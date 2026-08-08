@@ -1,5 +1,23 @@
 import type { Metadata } from "next";
+import localFont from "next/font/local";
 import "./globals.css";
+
+const rubik = localFont({
+  src: [
+    {
+      path: "../public/fonts/Rubik-Regular.ttf",
+      weight: "400",
+      style: "normal",
+    },
+    {
+      path: "../public/fonts/Rubik-Medium.ttf",
+      weight: "500",
+      style: "normal",
+    },
+  ],
+  display: "swap",
+  variable: "--font-rubik",
+});
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -13,9 +31,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`antialiased`}>
-      <body className="min-h-full flex flex-col">
-        {" "}
-        <div>{children}</div>
+      <body className={`${rubik.variable} ${rubik.variable}`}>
+        <main>{children}</main>
       </body>
     </html>
   );
