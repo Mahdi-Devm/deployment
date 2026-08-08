@@ -18,10 +18,8 @@
         "name": "next"
       }
     ],
-    "baseUrl": "src",
     "paths": {
-      "@/*": ["./*"],
-      "@/core/*": ["core/*"]
+      "@/*": ["./*"]
     }
   },
   "include": [

@@ -1,10 +1,10 @@
-import dataSource from '@common/config/data-source';
-import { initSwagger } from '@common/config/swagger.config';
 import { AllExceptionsFilter } from '@common/filter/exception.filter';
 import { ValidationPipe } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import { NestExpressApplication } from '@nestjs/platform-express';
 import cookieParser from 'cookie-parser';
+import dataSource from 'src/config/data-source';
+import { initSwagger } from 'src/config/swagger.config';
 import { AppModule } from './app.module';
 
 async function bootstrap() {
